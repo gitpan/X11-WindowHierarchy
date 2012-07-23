@@ -3,21 +3,16 @@ package X11::WindowHierarchy;
 use strict;
 use warnings;
 use parent qw(Exporter);
-use X11::Protocol;
 
-our @EXPORT_OK = qw(x11_hierarchy x11_filter_hierarchy);
-our @EXPORT    = qw(x11_hierarchy x11_filter_hierarchy);
-
-our $VERSION = '0.001';
+our $VERSION = '0.002';
 
 =head1 NAME
 
+X11::WindowHierarchy - wrapper around L<X11::Protocol> for retrieving the current window hierarchy
 
 =head1 VERSION
 
-version 0.001
-X11::WindowHierarchy - wrapper around L<X11::Protocol> for retrieving
-the current window hierarchy
+version 0.002
 
 =head1 SYNOPSIS
 
@@ -26,10 +21,10 @@ the current window hierarchy
  # Returns a list of all windows with at least one 'word' character in the
  # window title, using the current $ENV{DISPLAY} to select the display and
  # screen
- my @windows = map $_->{id}, x11_filter_hierarchy(
+ my @windows = x11_filter_hierarchy(
     filter => qr/\w/
  );
- printf "Found window [%s] (id %d)\n" for @windows;
+ printf "Found window [%s] (id %d)%s\n", $_->{title}, $_->{id}, $_->{pid} ? ' pid ' . $_->{pid} : '' for @windows;
 
  # Dump all information we have about all windows on display :1
  use Data::TreeDumper;
@@ -39,6 +34,13 @@ the current window hierarchy
 
 Provides a couple of helper functions based on L<X11::Protocol> for
 extracting the current window hierarchy.
+
+=cut
+
+use X11::Protocol;
+
+our @EXPORT_OK = qw(x11_hierarchy x11_filter_hierarchy);
+our @EXPORT    = qw(x11_hierarchy x11_filter_hierarchy);
 
 =head1 FUNCTIONS
 
@@ -72,7 +74,7 @@ Returns a hashref structure which contains the following keys:
 
 =item * pid - the process ID for this window, if it has one
 
-=item * title - the window name
+=item * title - the window name, with any vertical whitespace (such as \n) converted to a single space
 
 =item * icon_name - the icon name
 

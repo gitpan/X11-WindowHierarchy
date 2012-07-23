@@ -1,4 +1,9 @@
 Revision history for X11-WindowHierarchy
 
+0.002     2012-07-23 04:52:49 Europe/London
+	Seems that I should be reading the manual on these dzil plugins, pod was broken
+	in that first release due to the @EXPORT definitions. Cleaned up a few other
+	documentation issues from initial release, code is unchanged.
+
 0.001     2012-07-23 04:36:26 Europe/London
 	Initial CPAN release
