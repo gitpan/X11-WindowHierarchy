@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use parent qw(Exporter);
 
-our $VERSION = '0.002';
+our $VERSION = '0.003';
 
 =head1 NAME
 
@@ -12,7 +12,7 @@ X11::WindowHierarchy - wrapper around L<X11::Protocol> for retrieving the curren
 
 =head1 VERSION
 
-version 0.002
+version 0.003
 
 =head1 SYNOPSIS
 
@@ -110,6 +110,11 @@ sub x11_hierarchy {
 			_NET_WM_PID
 		);
 
+		# Get all the geometry info apart from the root, since we know that already
+		my %geom = $x->GetGeometry($win);
+		delete $geom{root};
+		@props{keys %geom} = values %geom;
+
 		# Apply our ID
 		$props{id} = $win;
 
@@ -196,6 +201,20 @@ Get all window IDs for a given PID:
 
  my @win = map $_->{id}, x11_filter_hierarchy(
     filter => sub { $_->{pid} && $_->{pid} == $pid },
+ );
+
+Find the window ID for the largest (as measured by width x height) window
+for a given PID:
+
+ use List::UtilsBy qw(max_by);
+ my ($win) = max_by {
+    $_->{width} * $_->{height}
+ } map {
+    $_->{id}
+ } x11_filter_hierarchy(
+    filter => sub {
+       $_->{pid} && $_->{pid} == $pid
+    },
  );
 
 =head1 SEE ALSO

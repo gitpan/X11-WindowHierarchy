@@ -13,11 +13,15 @@ t/00-pod.t
 t/00-use.t
 t/author-test-eol.t
 t/hierarchy.t
+t/release-localbrew-dzil-clean-5.10.1.t
+t/release-localbrew-dzil-clean-5.12.4.t
+t/release-localbrew-dzil-clean-5.14.2.t
+t/release-localbrew-dzil-clean-5.16.0.t
+t/release-localbrew-dzil-clean-5.8.9.t
 t/release-mojibake.t
 t/release-pod-coverage.t
 t/release-pod-linkcheck.t
 t/release-pod-syntax.t
-t/release-portability.t
 t/release-synopsis.t
 t/release-test-version.t
 t/release-unused-vars.t

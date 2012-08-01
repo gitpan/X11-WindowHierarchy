@@ -1,5 +1,13 @@
 Revision history for X11-WindowHierarchy
 
+0.003     2012-08-01 20:42:42 Europe/London
+	Include geometry in datastructure we return, and provide an
+	example showing get-largest-window operation.
+
+	Also add parent.pm to prereqs, core since 5.10.1 but seems
+	polite to mention it since the rest of this module should be
+	5.8-compatible.
+
 0.002     2012-07-23 04:52:49 Europe/London
 	Seems that I should be reading the manual on these dzil plugins, pod was broken
 	in that first release due to the @EXPORT definitions. Cleaned up a few other

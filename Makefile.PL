@@ -22,9 +22,10 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "X11::WindowHierarchy",
   "PREREQ_PM" => {
-    "X11::Protocol" => "0.56"
+    "X11::Protocol" => "0.56",
+    "parent" => 0
   },
-  "VERSION" => "0.002",
+  "VERSION" => "0.003",
   "test" => {
     "TESTS" => "t/*.t"
   }

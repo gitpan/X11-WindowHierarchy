@@ -4,7 +4,7 @@
       "Tom Molesworth <cpan@entitymodel.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.300020, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Dist::Zilla version 4.300021, CPAN::Meta::Converter version 2.120921",
    "license" : [
       "perl_5"
    ],
@@ -21,7 +21,8 @@
       },
       "runtime" : {
          "requires" : {
-            "X11::Protocol" : "0.56"
+            "X11::Protocol" : "0.56",
+            "parent" : "0"
          }
       },
       "test" : {
@@ -38,6 +39,6 @@
       },
       "homepage" : "http://search.cpan.org/dist/X11-WindowHierarchy/"
    },
-   "version" : "0.002"
+   "version" : "0.003"
 }
 
