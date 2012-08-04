@@ -1,13 +1,5 @@
 #!perl
 
-BEGIN {
-  unless ($ENV{RELEASE_TESTING}) {
-    require Test::More;
-    Test::More::plan(skip_all => 'these tests are for release candidate testing');
-  }
-}
-
-
 use strict;
 use warnings;
 
@@ -23,7 +15,7 @@ unless($ENV{'PERLBREW_ROOT'}) {
     exit;
 }
 
-my $brew = q[dzil-clean-5.10.1];
+my $brew = q[dzil-clean-5.16.0];
 
 my $cpanm_path = qx(which cpanm 2>/dev/null);
 unless($cpanm_path) {
@@ -79,7 +71,7 @@ if($pid) {
     close STDERR;
 
     chdir File::Spec->catdir($FindBin::Bin,
-        File::Spec->updir); # exit test directory
+        File::Spec->updir, File::Spec->updir); # exit test directory
 
     exec 'perl', $cpanm_path, '-L', $tmpdir->dirname, '.';
 }

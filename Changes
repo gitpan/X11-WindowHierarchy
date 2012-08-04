@@ -1,5 +1,9 @@
 Revision history for X11-WindowHierarchy
 
+0.004     2012-08-04 22:34:45 Europe/London
+	Replaced \v in window title cleanup regex to use an explicit
+	list of characters since perl<5.10.0 doesn't understand it.
+
 0.003     2012-08-01 20:42:42 Europe/London
 	Include geometry in datastructure we return, and provide an
 	example showing get-largest-window operation.

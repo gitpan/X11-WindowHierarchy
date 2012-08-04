@@ -1,13 +1,5 @@
 #!perl
 
-BEGIN {
-  unless ($ENV{RELEASE_TESTING}) {
-    require Test::More;
-    Test::More::plan(skip_all => 'these tests are for release candidate testing');
-  }
-}
-
-
 use strict;
 use warnings;
 
@@ -79,7 +71,7 @@ if($pid) {
     close STDERR;
 
     chdir File::Spec->catdir($FindBin::Bin,
-        File::Spec->updir); # exit test directory
+        File::Spec->updir, File::Spec->updir); # exit test directory
 
     exec 'perl', $cpanm_path, '-L', $tmpdir->dirname, '.';
 }

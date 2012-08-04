@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use parent qw(Exporter);
 
-our $VERSION = '0.003';
+our $VERSION = '0.004';
 
 =head1 NAME
 
@@ -12,7 +12,7 @@ X11::WindowHierarchy - wrapper around L<X11::Protocol> for retrieving the curren
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 SYNOPSIS
 
@@ -124,7 +124,7 @@ sub x11_hierarchy {
 		}
 
 		# Get rid of any \n or similar chars, which seem to be legal in window titles for example
-		s/\v+/ /g for grep defined, values %props;
+		s/[\r\f\n\t\x0B]+/ /g for grep defined, values %props;
 
 		# Remap to something more friendly
 		$props{title} = delete $props{_NET_WM_NAME};
